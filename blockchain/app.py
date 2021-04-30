@@ -13,7 +13,7 @@ class Blockchain:
         self.chain = []
         self.create_block(proof= 1, previous_hash='0')
 
-    def create_block(self, proo f, previous_hash):
+    def create_block(self, proof, previous_hash):
         block = {'index': len(self.chain)+1,
                 'timestamp': str(datetime.datetime.now()),
                 'proof': proof,
@@ -95,7 +95,7 @@ def get_chain():
 
 @app.route('/is_valid', methods=['GET'])
 def is_valid():
-    is_valid = blockchain.is_chain_vaild(blockchain.chain)
+    is_valid = blockchain.is_chain_valid(blockchain.chain)
     if is_valid:
         response = {'message': "All good. The Blockchain is valid"}
     else:
