@@ -83,10 +83,10 @@ class Blockchain:
         max_length = len(self.chain)
         for node in network:
             response = requests.get(f'http://{node}/get_chain')
-            if response.status_code ==200:
+            if response.status_code == 200:
                 length = response.json()['length']
                 chain = response.json()['chain']
-                if length > max_length and self.is_chain_vaild(chain):
+                if length > max_length and self.is_chain_valid(chain):
                     max_length = length
                     longest_chain = chain
         if longest_chain:
@@ -150,7 +150,7 @@ def is_valid():
     return jsonify(response), 200
 
 # Adding a new transaction to the blockchain
-@app.route('/add_transaction', methods=['POST'])
+@app.route('/add_transaction', methods=['GET', 'POST'])
 def add_transaction():
     json = request.get_json()
     transaction_keys = ['sender', 'receiver', 'amount']
@@ -163,7 +163,7 @@ def add_transaction():
 #part 3 decenteralizing our blockchain
 
 # Connecting new nodes
-@app.route('/connect_node', methods=['POST'])
+@app.route('/connect_node', methods=['GET', 'POST'])
 def connect_node():
     json = request.get_json()
     nodes = json.get('nodes')
