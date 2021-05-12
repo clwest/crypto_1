@@ -1,4 +1,4 @@
-pragma solidity >=0.4.0 <0.9.0;
+pragma solidity ^0.8.4;
 
 contract donkeycoin_ico {
 
